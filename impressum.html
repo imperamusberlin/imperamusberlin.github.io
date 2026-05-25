@@ -8,42 +8,47 @@
     <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="apple-touch-icon" href="assets/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" rel="stylesheet">
     <style>
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-        :root{--bg:#0A0A0A;--bg-2:#111;--gold:#C8A97E;--gold-border:rgba(200,169,126,.15);--white:#F5F0E8;--gray:#888078;--gray-2:#4A4540;--line:rgba(255,255,255,.06);--max:780px;}
+        :root{
+            --cream:#F8F4EE;--cream-2:#F0EAE0;--cream-3:#E6DDD1;
+            --ink:#1C1A16;--ink-2:#38342C;--ink-3:#6B6356;
+            --terra:#C0452B;
+            --line:rgba(28,26,22,.1);--max:760px;--r:6px;
+        }
         html{scroll-behavior:smooth;}
-        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);-webkit-font-smoothing:antialiased;line-height:1.7;}
-        nav{position:fixed;top:0;left:0;right:0;z-index:900;height:70px;display:flex;align-items:center;padding:0 52px;background:rgba(10,10,10,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);}
-        .nav-logo{display:flex;align-items:center;gap:11px;text-decoration:none;}
-        .nav-logo img{height:32px;width:32px;object-fit:contain;filter:drop-shadow(0 0 6px rgba(200,169,126,.25));}
-        .nav-logo span{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;letter-spacing:.1em;color:var(--white);}
-        .nav-logo b{color:var(--gold);}
-        .back{margin-left:auto;font-size:13px;color:var(--gray);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .2s;}
-        .back:hover{color:var(--gold);}
-        main{max-width:var(--max);margin:0 auto;padding:120px 40px 80px;}
-        .page-header{margin-bottom:60px;padding-bottom:40px;border-bottom:1px solid var(--line);}
-        .page-tag{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
-        .page-tag::before{content:'';width:16px;height:1px;background:var(--gold);}
-        h1{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,52px);font-weight:600;line-height:1.1;color:var(--white);}
-        .section{margin-bottom:44px;}
-        .section h2{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--gold);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--gold-border);}
-        .section p,.section address{font-size:15px;color:var(--gray);font-style:normal;line-height:1.8;}
-        .section a{color:var(--gold);text-decoration:none;}
-        .section a:hover{color:var(--white);}
-        .section p+p{margin-top:10px;}
-        footer{border-top:1px solid var(--line);padding:32px 40px;text-align:center;}
-        footer p{font-size:12px;color:var(--gray-2);}
-        footer a{color:var(--gray-2);text-decoration:none;margin:0 12px;}
-        footer a:hover{color:var(--white);}
-        @media(max-width:600px){nav{padding:0 24px;}main{padding:100px 24px 60px;}}
+        body{font-family:'DM Sans',system-ui,sans-serif;background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.7;font-size:16px;}
+        nav{position:fixed;top:0;left:0;right:0;z-index:900;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(248,244,238,.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);}
+        .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+        .nav-logo img{height:28px;width:28px;object-fit:contain;}
+        .nav-logo span{font-family:'Fraunces',Georgia,serif;font-size:16px;font-weight:600;letter-spacing:.07em;color:var(--ink);}
+        .back{font-size:13px;color:var(--ink-3);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .2s;}
+        .back:hover{color:var(--terra);}
+        main{max-width:var(--max);margin:0 auto;padding:110px 40px 80px;}
+        .page-header{margin-bottom:56px;padding-bottom:36px;border-bottom:1px solid var(--line);}
+        .page-tag{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+        .page-tag::before{content:'';width:18px;height:1px;background:var(--terra);}
+        h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(28px,4.5vw,44px);font-weight:600;line-height:1.1;color:var(--ink);}
+        .section{margin-bottom:42px;}
+        .section h2{font-family:'Fraunces',Georgia,serif;font-size:18px;font-weight:600;color:var(--ink);margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--line);}
+        .section p,.section address{font-size:14.5px;color:var(--ink-3);font-style:normal;line-height:1.85;}
+        .section p+p{margin-top:8px;}
+        .section a{color:var(--terra);text-decoration:none;}
+        .section a:hover{text-decoration:underline;}
+        footer{border-top:1px solid var(--line);padding:28px 40px;text-align:center;background:var(--cream-2);}
+        footer p{font-size:12px;color:var(--ink-3);}
+        footer a{color:var(--ink-3);text-decoration:none;margin:0 10px;transition:color .2s;}
+        footer a:hover{color:var(--terra);}
+        @media(max-width:600px){nav{padding:0 20px;}main{padding:90px 20px 60px;}footer{padding:24px 20px;}}
     </style>
 </head>
 <body>
 <nav>
     <a href="index.html" class="nav-logo">
         <img src="assets/logo.png" alt="Imperamus" onerror="this.style.display='none'">
-        <span>IMPER<b>A</b>MUS</span>
+        <span>IMPERAMUS</span>
     </a>
     <a href="index.html" class="back">← Zurück zur Website</a>
 </nav>
@@ -73,9 +78,9 @@
     </div>
 
     <div class="section">
-        <h2>Umsatzsteuer</h2>
-        <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG:<br>
-        nicht vorhanden / wird nachgereicht</p>
+        <h2>Kleinunternehmerregelung</h2>
+        <p>Gemäß § 19 UStG wird keine Umsatzsteuer berechnet und ausgewiesen (Kleinunternehmer).</p>
+        <p>Umsatzsteuer-Identifikationsnummer: nicht vorhanden / wird ggf. nachgereicht.</p>
     </div>
 
     <div class="section">
@@ -91,30 +96,31 @@
     <div class="section">
         <h2>Haftung für Inhalte</h2>
         <p>Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
-        <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich.</p>
+        <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
     </div>
 
     <div class="section">
         <h2>Haftung für Links</h2>
         <p>Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
-        <p>Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar.</p>
+        <p>Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
     </div>
 
     <div class="section">
         <h2>Urheberrecht</h2>
-        <p>Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
-        <p>Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet.</p>
+        <p>Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors.</p>
+        <p>Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis an <a href="mailto:kontakt@imperamus.de">kontakt@imperamus.de</a>.</p>
     </div>
 </main>
 
 <footer>
     <p>
-        © 2026 IMPERAMUS Webagentur
+        © 2026 IMPERAMUS Webagentur &nbsp;·&nbsp;
         <a href="index.html">Startseite</a>
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
         <a href="agb.html">AGB</a>
     </p>
 </footer>
+
 </body>
 </html>
