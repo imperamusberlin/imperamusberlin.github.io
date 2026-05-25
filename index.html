@@ -13,8 +13,7 @@
     <meta property="og:image" content="https://imperamus.de/assets/logo.png">
     <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="apple-touch-icon" href="assets/logo.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,600;1,9..144,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+    <!-- Fonts werden erst nach Cookie-Consent geladen (DSGVO) -->
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -377,6 +376,8 @@
             .hero-proof { justify-content: center; }
             .hero-right { max-width: 440px; margin: 0 auto; }
             .hero-scroll { left: 50%; transform: translateX(-50%); }
+            .f-chip.c2 { left: 2%; }
+            .f-chip.c3 { right: 2%; }
             .brief-inner { grid-template-columns: 1fr; }
             .brief-card { display: none; }
             .why-grid { grid-template-columns: 1fr; }
@@ -387,10 +388,11 @@
             .leis-header { grid-template-columns: 1fr; }
         }
         @media (max-width: 900px) {
-            nav { padding: 0 24px; }
+            nav { padding: 0 20px; justify-content: center; }
             .wrap { padding: 0 24px; }
             .nav-links, .nav-btn { display: none; }
-            .hamburger { display: flex; }
+            .hamburger { display: flex; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
+            .nav-logo { max-width: calc(100% - 80px); }
             .mob-nav { padding: 28px 24px; }
             .hero { padding: 88px 24px 70px; }
             .why, .process, .leistungen, .branchen, .preise, .faq, .kontakt { padding: 80px 0; }
@@ -406,6 +408,8 @@
             .bento-item.wide { grid-column: span 1; }
             .hero h1 { font-size: clamp(32px, 9vw, 48px); }
             .foot-inner { grid-template-columns: 1fr; }
+            .f-chip { display: none; }
+            .hero-right { max-width: 100%; }
         }
     </style>
 </head>
@@ -885,9 +889,13 @@
 </footer>
 
 <script>
+// DSGVO: Google Fonts erst nach Consent laden
+var _FU = 'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,600;1,9..144,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap';
+function loadFonts(){if(!document.getElementById('gf')){var l=document.createElement('link');l.id='gf';l.rel='stylesheet';l.href=_FU;document.head.appendChild(l);}}
+
 // Cookie
-(function(){if(localStorage.getItem('ck')){var b=document.getElementById('cookie-banner');if(b)b.style.display='none';}})();
-function acceptCookies(){localStorage.setItem('ck','1');var b=document.getElementById('cookie-banner');if(b){b.style.opacity='0';b.style.transition='opacity .3s';setTimeout(function(){b.style.display='none';},300);}}
+(function(){if(localStorage.getItem('ck')){var b=document.getElementById('cookie-banner');if(b)b.style.display='none';loadFonts();}})();
+function acceptCookies(){localStorage.setItem('ck','1');loadFonts();var b=document.getElementById('cookie-banner');if(b){b.style.opacity='0';b.style.transition='opacity .3s';setTimeout(function(){b.style.display='none';},300);}}
 
 // Mobile nav
 function toggleMob(){document.getElementById('mob').classList.toggle('open');document.getElementById('hbg').classList.toggle('open');}
@@ -912,21 +920,28 @@ function sub(e){
     e.preventDefault();
     const btn = document.getElementById('sbtn');
     btn.textContent = 'Wird gesendet…'; btn.disabled = true;
+    const v = id => document.getElementById(id).value;
     const msg = ['📩 NEUE ANFRAGE — imperamus.de','━━━━━━━━━━━━━━━━',
-        `👤 ${document.getElementById('fn').value}`,
-        document.getElementById('fc').value ? `🏢 ${document.getElementById('fc').value}` : '',
-        `📞 ${document.getElementById('fp').value}`,
-        document.getElementById('fe').value ? `✉️ ${document.getElementById('fe').value}` : '',
-        document.getElementById('fb').value ? `🏷 ${document.getElementById('fb').value}` : '',
-        document.getElementById('fm').value ? `💬 ${document.getElementById('fm').value}` : '',
+        `👤 ${v('fn')}`,
+        v('fc') ? `🏢 ${v('fc')}` : '',
+        `📞 ${v('fp')}`,
+        v('fe') ? `✉️ ${v('fe')}` : '',
+        v('fb') ? `🏷 ${v('fb')}` : '',
+        v('fm') ? `💬 ${v('fm')}` : '',
         '━━━━━━━━━━━━━━━━'
     ].filter(Boolean).join('\n');
     fetch('https://api.telegram.org/bot8752139809:AAES05j7hP3MJaTlxr-Jub3FCkXOR17sgFU/sendMessage',{
         method:'POST', headers:{'Content-Type':'application/json'},
         body: JSON.stringify({chat_id:'-1003951377259', text: msg})
-    }).finally(()=>{
+    })
+    .then(() => {
         document.getElementById('f').style.display='none';
         document.getElementById('fs').style.display='block';
+    })
+    .catch(() => {
+        btn.textContent = 'Anfrage senden';
+        btn.disabled = false;
+        alert('Fehler beim Senden. Bitte schreiben Sie uns direkt:\nkontakt@imperamus.de');
     });
 }
 </script>
