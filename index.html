@@ -418,7 +418,6 @@
             opacity:0; transform:translateY(20px);
             transition:opacity .6s ease, transform .6s ease, border-color .3s, box-shadow .3s;
             position:relative; overflow:hidden;
-            will-change:transform;
         }
         .bento-item.visible { opacity:1; transform:translateY(0); }
         .bento-item:hover { border-color:var(--gold-border); box-shadow:0 20px 60px rgba(0,0,0,.5), 0 0 30px rgba(200,169,126,.05); }
@@ -449,7 +448,6 @@
             opacity:0; transform:translateY(14px);
             transition:opacity .6s ease, transform .6s ease, border-color .25s, background .25s, box-shadow .3s;
             position:relative; overflow:hidden;
-            will-change:transform;
         }
         .b-card.visible { opacity:1; transform:translateY(0); }
         .b-card:hover { border-color:var(--gold-border); background:var(--bg-card); box-shadow:0 10px 40px rgba(0,0,0,.4), 0 0 20px rgba(200,169,126,.04); }
@@ -467,7 +465,6 @@
             border-radius:14px; padding:40px;
             transition:border-color .3s, box-shadow .3s, transform .4s cubic-bezier(.25,.46,.45,.94);
             position:relative; overflow:hidden;
-            will-change:transform;
         }
         .p-card:hover { border-color:var(--gold-border); box-shadow:0 24px 70px rgba(0,0,0,.6), 0 0 30px rgba(200,169,126,.06); }
         .p-card.featured { border-color:rgba(200,169,126,.25); background:linear-gradient(160deg,rgba(200,169,126,.07) 0%,var(--bg-card) 50%); }
@@ -621,9 +618,22 @@
             .cta-sec { padding:80px 20px; }
             .foot-inner { grid-template-columns:1fr; }
             .hero h1 { font-size:clamp(36px,10vw,54px); }
-            .orb-1 { width:400px; height:400px; }
+            .orb-1 { width:300px; height:300px; }
             .orb-2, .orb-3 { display:none; }
         }
+        /* ── REDUCED MOTION ── */
+        @media (prefers-reduced-motion: reduce) {
+            .orb { animation: none !important; }
+            .hero-device { transform: perspective(1200px) rotateY(-8deg) rotateX(3deg) !important; transition: none !important; }
+            .hero-logo-wrap, .hero-badge, .hero h1, .hero-desc, .hero-actions, .hero-right, .hero-stats, .hero-scroll { animation: none !important; opacity: 1 !important; transform: none !important; }
+            .reveal { transition: none !important; }
+            .bento-item, .b-card { transition: border-color .2s, box-shadow .2s, opacity .01s !important; }
+            @keyframes devShimmer { 0%,100%{opacity:1;} }
+            @keyframes ctaPulse { 0%,100%{opacity:1;} }
+            @keyframes blink { 0%,100%{box-shadow:none;} }
+        }
+        /* ── BENTO HIGHLIGHT Z-INDEX FIX ── */
+        .bento-item.highlight::after { z-index: 1; }
     </style>
 </head>
 <body>
@@ -637,8 +647,8 @@
     box-shadow:0 20px 60px rgba(0,0,0,.6);
     animation:cookieUp .4s .5s both;">
     <p style="font-size:13px;color:#888078;line-height:1.5;flex:1;min-width:220px">
-        Diese Website lädt Schriften von Google Fonts. Dabei wird Ihre IP-Adresse übertragen.
-        <a href="datenschutz.html" style="color:#C8A97E;text-decoration:none">Datenschutz</a>
+        Diese Website verwendet Google Fonts. Ihre IP-Adresse wird dabei an Google übertragen (Art. 6 Abs. 1 lit. f DSGVO).
+        <a href="datenschutz.html" style="color:#C8A97E;text-decoration:none">Mehr erfahren</a>
     </p>
     <button onclick="acceptCookies()" style="
         padding:9px 22px;background:#C8A97E;color:#0A0A0A;border:none;border-radius:6px;
@@ -688,9 +698,9 @@
         <div class="hero-logo-wrap">
             <img src="assets/logo-wide.png" class="hero-logo-big" alt="Imperamus" onerror="this.src='assets/logo.png'">
         </div>
-        <div class="hero-badge"><span class="pulse"></span> KI-gestützte Neukundengewinnung</div>
+        <div class="hero-badge"><span class="pulse"></span> Kostenloser Entwurf vorab — kein Risiko</div>
         <h1>Ihr Wettbewerber<br>hat eine Website.<br><i>Das ist Ihre Chance.</i></h1>
-        <p class="hero-desc">Wir finden Unternehmen ohne Website, erstellen einen personalisierten KI-Entwurf — und schreiben ihnen per Brief. Vollautomatisiert. In 7 Tagen live.</p>
+        <p class="hero-desc">Wir bauen Ihre professionelle Website — mit einem kostenlosen KI-Entwurf vorab, den Sie bereits sehen, bevor Sie sich entscheiden. In 7 Tagen live. Ab 490 €, einmalig.</p>
         <div class="hero-actions">
             <a href="#kontakt" class="btn-gold">Erstgespräch vereinbaren</a>
             <a href="#prozess" class="btn-line">So funktioniert es →</a>
@@ -719,9 +729,9 @@
             </div>
         </div>
         <div class="hero-stats">
-            <div class="hero-stat"><div class="hero-stat-n" data-count="500" data-suffix="+">500+</div><div class="hero-stat-l">Briefe versendet</div></div>
-            <div class="hero-stat"><div class="hero-stat-n" data-count="34" data-suffix="%">34%</div><div class="hero-stat-l">Rücklaufquote</div></div>
-            <div class="hero-stat"><div class="hero-stat-n">ab 490€</div><div class="hero-stat-l">Festpreis</div></div>
+            <div class="hero-stat"><div class="hero-stat-n" data-count="500" data-suffix="+">500+</div><div class="hero-stat-l">Unternehmen kontaktiert</div></div>
+            <div class="hero-stat"><div class="hero-stat-n" data-count="7" data-suffix=" Tage">7 Tage</div><div class="hero-stat-l">bis Ihre Website live ist</div></div>
+            <div class="hero-stat"><div class="hero-stat-n">ab 490€</div><div class="hero-stat-l">Einmaliger Festpreis</div></div>
         </div>
     </div>
     <div class="hero-scroll"><div class="hero-scroll-line"></div> Scroll</div>
@@ -730,20 +740,20 @@
 <!-- TICKER -->
 <div class="ticker">
     <div class="ticker-t">
-        <div class="tick-i"><strong>500+</strong> Briefe versendet <span class="sep">·</span></div>
-        <div class="tick-i"><strong>34%</strong> Rücklaufquote <span class="sep">·</span></div>
+        <div class="tick-i"><strong>500+</strong> Unternehmen kontaktiert <span class="sep">·</span></div>
         <div class="tick-i"><strong>7 Tage</strong> bis live <span class="sep">·</span></div>
         <div class="tick-i"><strong>10</strong> Zielbranchen <span class="sep">·</span></div>
         <div class="tick-i"><strong>100%</strong> DSGVO-konform <span class="sep">·</span></div>
-        <div class="tick-i"><strong>ab 490 €</strong> Festpreis <span class="sep">·</span></div>
-        <div class="tick-i">Kein Risiko — kostenloser Entwurf <span class="sep">·</span></div>
-        <div class="tick-i"><strong>500+</strong> Briefe versendet <span class="sep">·</span></div>
-        <div class="tick-i"><strong>34%</strong> Rücklaufquote <span class="sep">·</span></div>
+        <div class="tick-i"><strong>ab 490 €</strong> Einmaliger Festpreis <span class="sep">·</span></div>
+        <div class="tick-i">Kostenloser KI-Entwurf vorab <span class="sep">·</span></div>
+        <div class="tick-i">Kein Abo, keine versteckten Kosten <span class="sep">·</span></div>
+        <div class="tick-i"><strong>500+</strong> Unternehmen kontaktiert <span class="sep">·</span></div>
         <div class="tick-i"><strong>7 Tage</strong> bis live <span class="sep">·</span></div>
         <div class="tick-i"><strong>10</strong> Zielbranchen <span class="sep">·</span></div>
         <div class="tick-i"><strong>100%</strong> DSGVO-konform <span class="sep">·</span></div>
-        <div class="tick-i"><strong>ab 490 €</strong> Festpreis <span class="sep">·</span></div>
-        <div class="tick-i">Kein Risiko — kostenloser Entwurf <span class="sep">·</span></div>
+        <div class="tick-i"><strong>ab 490 €</strong> Einmaliger Festpreis <span class="sep">·</span></div>
+        <div class="tick-i">Kostenloser KI-Entwurf vorab <span class="sep">·</span></div>
+        <div class="tick-i">Kein Abo, keine versteckten Kosten <span class="sep">·</span></div>
     </div>
 </div>
 
@@ -1081,6 +1091,9 @@
 // ── COOKIE ──
 (function(){if(localStorage.getItem('cookies_ok')){var b=document.getElementById('cookie-banner');if(b)b.style.display='none';}})();
 function acceptCookies(){localStorage.setItem('cookies_ok','1');var b=document.getElementById('cookie-banner');if(b){b.style.opacity='0';b.style.transition='opacity .3s';setTimeout(function(){b.style.display='none';},300);}}
+
+// ── SELECT FARBE ──
+(function(){var sel=document.getElementById('fb');if(sel)sel.addEventListener('change',function(){this.style.color=this.value?'var(--white)':'';});})();
 
 // ── MAGNETIC CURSOR ──
 const cur = document.getElementById('cur');
